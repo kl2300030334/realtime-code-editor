@@ -4,21 +4,21 @@ import { Toaster } from 'react-hot-toast';
 import Home from './pages/Home';
 import EditorPage from './pages/EditorPage';
 import Chatbot from './components/Chatbot'; 
-import React from 'react';
+import React, { useState } from 'react';
 
 
 const AppRoutes = () => {
   const location = useLocation();
 
-  
+  const [users,setUsers]=useState([])
   const isEditorPage = location.pathname.startsWith('/editor');
 
   return (
     <>
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Home setUsers={setUsers} users={users}/>} />
         <Route path="/editor/:roomId" 
-        element={<EditorPage />} />
+        element={<EditorPage setUsers={setUsers} users={users} />} />
        
       </Routes>
       
